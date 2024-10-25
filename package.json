@@ -9,7 +9,7 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "deploy": "gh-pages -d dist",
-    "homepage": "https://reutmihai.github.io/Template-react"
+    "homepage": "https://reutmihai.github.io/goit-react-hw-04-phonebook/"
   },
   "dependencies": {
     "react": "^18.3.1",
