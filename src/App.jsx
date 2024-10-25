@@ -1,35 +1,48 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState } from 'react';
+import Section from './components/Section/Section';
+import Contacts from './components/Contacts/Contacts';
+import { nanoid } from 'nanoid';
+import './App.css';
+import ContactsList from './components/ContactsList/ContactsList';
+
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [contacts, setContacts] = useState([]);
+  const [name, setName] = useState('');
+  const [number, setNumber] = useState('');
+
+  const handleAddContact = ((name, number) => {
+    const allContacts = contacts.map(contact => contact.name.toLowerCase());
+    if(allContacts.includes(name.toLowerCase())) { 
+      alert('Acest contact exista deja!');
+      return;
+    }; 
+
+    const newContact = {
+      id: nanoid(),
+      name,
+      number
+    };
+
+    setContacts((prevState) => [...prevState, newContact]);
+  })
+
+  const handleDeleteContact = (contactId) => {
+    setContacts((prevState) =>
+      prevState.filter((contact) => contact.id !== contactId)
+    );
+  };
 
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <Section title="PhoneBookApp">
+        <Contacts addContact={handleAddContact} />
+      </Section>
+      <Section title="Contacts">
+        <ContactsList contacts={contacts} deleteContact={handleDeleteContact}/>
+      </Section>
     </>
-  )
+  );
 }
 
 export default App
