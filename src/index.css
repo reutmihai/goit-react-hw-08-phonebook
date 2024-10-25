@@ -72,3 +72,22 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 }
+
+@media screen and (max-width: 600px) {
+  body {
+    background-color: lightblack; /* Schimbă culoarea de fundal pentru telefoane */
+  }
+
+  .container {
+    padding: 10px; /* Reducerea padding-ului pentru telefoane */
+  }
+
+  h1 {
+    font-size: 24px; /* Dimensiune mai mică a fontului pentru titluri */
+  }
+
+  .button {
+    width: 100%; /* Butoanele să ocupe lățimea completă pe mobil */
+    font-size: 18px; /* Dimensiune mai mare a fontului pentru butoane */
+  }
+}
