@@ -1,5 +1,6 @@
 import React from "react";
 import { useState } from "react";
+import styles from '../Contacts/Contacts.module.css';
 
 const Contacts = ({ addContact }) => {
   const [name, setName] = useState("");
@@ -26,7 +27,7 @@ const Contacts = ({ addContact }) => {
 
   return (
     <div>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} className={styles['contact-form']}>
         <span>Name:</span>
         <input
           type="text"

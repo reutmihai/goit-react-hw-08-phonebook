@@ -39,7 +39,14 @@ function App() {
         <Contacts addContact={handleAddContact} />
       </Section>
       <Section title="Contacts">
-        <ContactsList contacts={contacts} deleteContact={handleDeleteContact}/>
+        {contacts.length === 0 ? (
+          <p>There is no contact yet.</p>
+        ) : (
+          <ContactsList
+            contacts={contacts}
+            deleteContact={handleDeleteContact}
+          />
+        )}
       </Section>
     </>
   );
