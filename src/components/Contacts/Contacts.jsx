@@ -1,46 +1,40 @@
-import React from "react";
-import { useState } from "react";
-import styles from '../Contacts/Contacts.module.css';
-import { useDispatch } from "react-redux";
-import { addContact } from "../../redux/slices/contactsSlice";
+import React, { useState } from "react";
+import styles from '../Contacts/Contacts.module.css'
 
-const Contacts = () => {
+const Contacts = ({ onAddContact, error }) => {
   const [name, setName] = useState("");
-  const [number, setNumber] = useState('');
-  const dispatch = useDispatch();
-
+  const [number, setNumber] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(addContact({name, number}));
+    onAddContact(name, number);
     setName("");
     setNumber("");
   };
 
   return (
-    <div>
-      <form onSubmit={handleSubmit} className={styles["contact-form"]}>
-        <span>Name:</span>
+    <form onSubmit={handleSubmit} className={styles['contact-form']}>
+      <label>
+        Name:
         <input
           type="text"
-          name="name"
-          title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
-          required
           value={name}
           onChange={(e) => setName(e.target.value)}
+          required
         />
-        <span>Tel:</span>
+      </label>
+      <label>
+        Number:
         <input
           type="tel"
-          name="number"
-          title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
-          required
           value={number}
           onChange={(e) => setNumber(e.target.value)}
+          required
         />
-        <button type="submit">Add Contact</button>
-      </form>
-    </div>
+      </label>
+      <button type="submit">Add Contact</button>
+      {error && <p style={{ color: "red" }}>{error}</p>}
+    </form>
   );
 };
 

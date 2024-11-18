@@ -1,21 +1,24 @@
-import React from 'react';
-import styles from '../FindContact/FindContact.module.css';
-import { useDispatch, useSelector } from 'react-redux';
-import { filterContacts } from '../../redux/slices/contactsSlice';
+import React from "react";
+import { useDispatch } from "react-redux";
+import { setFilter } from "../../redux/slices/contactsSlice";
+import styles from '../FindContact/FindContact.module.css'
 
-export const FindContact = () => {
-  const filter = useSelector((state) => state.filter);
+const FindContact = () => {
   const dispatch = useDispatch();
+
+  const handleFilterChange = (e) => {
+    dispatch(setFilter(e.target.value)); 
+  };
 
   return (
     <div className={styles.findContact}>
       <input
         type="text"
-        name="name"
-        required
-        value={filter}
-        onChange={(e) => dispatch(filterContacts(e.target.value))}
+        placeholder="Search contacts..."
+        onChange={handleFilterChange}
       />
     </div>
   );
-}
+};
+
+export default FindContact;
