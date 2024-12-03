@@ -1,12 +1,11 @@
+// redux/store.js
 import { configureStore } from "@reduxjs/toolkit";
-import contactsReducer  from "./slices/contactsSlice";
-import storage from 'redux-persist/lib/storage';
-
+import authReducer from "./slices/authSlice";
+import contactsReducer from "./slices/contactsSlice";
 
 export const store = configureStore({
-    reducer: {
-        contacts: contactsReducer,
-    },
+  reducer: {
+    auth: authReducer, 
+    contacts: contactsReducer,
+  },
 });
-
-

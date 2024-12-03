@@ -1,19 +1,22 @@
 import React, { useState } from "react";
-import styles from '../Contacts/Contacts.module.css'
+import styles from "../Contacts/Contacts.module.css";
 
 const Contacts = ({ onAddContact, error }) => {
+  // onAddContact este primită ca prop
   const [name, setName] = useState("");
   const [number, setNumber] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onAddContact(name, number);
+    if (onAddContact) {
+      onAddContact(name, number); // apelarea funcției din props
+    }
     setName("");
     setNumber("");
   };
 
   return (
-    <form onSubmit={handleSubmit} className={styles['contact-form']}>
+    <form onSubmit={handleSubmit} className={styles["contact-form"]}>
       <label>
         Name:
         <input
